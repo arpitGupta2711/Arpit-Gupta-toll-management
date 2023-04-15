@@ -3,8 +3,11 @@ import './styles.css'
 
 const Divider = () => {
   return (
-    <div class="divider"></div>
+    <div className="verticalDivider"></div>
   )
 }
 
 export default Divider
+
+
+
