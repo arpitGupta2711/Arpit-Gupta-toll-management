@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import { useState } from "react";
-const TollForm = ({ setTollFlag }) => {
+const TollForm = ({ setTollFlag, setTollList }) => {
   const [tollName, setTollName] = useState("");
   const [zeroZero, setZeroZero] = useState("");
   const [zeroOne, setZeroOne] = useState("");
@@ -22,45 +22,54 @@ const TollForm = ({ setTollFlag }) => {
     e.preventDefault();
     const newToll = {
       tollName,
-      vehicleDetails: [
-        {
-          [zeroZero]: {
-            singleFare: zeroZero,
-            returnFare: zeroTwo,
-          },
-        },
-        {
-          [oneZero]: {
-            singleFare: oneZero,
-            returnFare: oneTwo,
-          },
-        },
-        {
-          [twoZero]: {
-            singleFare: twoZero,
-            returnFare: twoTwo,
-          },
-        },
-        {
-          [threeZero]: {
-            singleFare: threeZero,
-            returnFare: threeTwo,
-          },
-        }
-      ]
+
+      [zeroZero]: {
+        singleFare: zeroOne,
+        returnFare: zeroTwo,
+      },
+
+      [oneZero]: {
+        singleFare: oneOne,
+        returnFare: oneTwo,
+      },
+
+      [twoZero]: {
+        singleFare: twoOne,
+        returnFare: twoTwo,
+      },
+      [threeZero]: {
+        singleFare: threeOne,
+        returnFare: threeTwo,
+      },
     };
 
-    console.log(newToll);
+    setTollList((prev) => {
+      prev.push(newToll);
+      return prev;
+    });
 
-    // setTollName("");
-    // setVehicleType("");
-    // setSingleJourneyFare("");
-    // setReturnJourneyFare("");
+    setTollName("");
+    setZeroZero("");
+    setZeroOne("");
+    setZeroTwo("");
+    setOneZero("");
+    setOneOne("");
+    setOneTwo("");
+
+    setTwoZero("");
+    setTwoOne("");
+    setTwoTwo("");
+
+    setThreeZero("");
+    setThreeOne("");
+    setThreeTwo("");
+    setTollFlag(false);
   };
+
   return (
     <div className="overlay">
       <div className="form-container">
-        <div className="AddTollForm">
+        <form className="AddTollForm" onSubmit={handleSubmit}>
           <div className="AddTollForm__header">
             <h2>Add New Toll</h2>
             <button
@@ -89,103 +98,108 @@ const TollForm = ({ setTollFlag }) => {
 
           <div className="AddTollForm__section">
             <div className="AddTollForm__vehicleRow">
-              <select onChange={(e) => setZeroZero(e.target.value)}>
-                <option>Select Vehicle Type</option>
-                <option>Car/Jeep/Van</option>
-                <option>LCV</option>
-                <option>Truck/Bus</option>
-                <option>Heavy vehicle</option>
+              <select required onChange={(e) => setZeroZero(e.target.value)}>
+                <option value="">Select Vehicle Type</option>
+                <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                <option value="LCV">LCV</option>
+                <option value="Truck/Bus">Truck/Bus</option>
+                <option value="Heavy vehicle">Heavy vehicle</option>
               </select>
               <input
                 type="number"
                 placeholder="Single Journey"
                 value={zeroOne}
+                required
                 onChange={(e) => setZeroOne(e.target.value)}
               />
               <input
                 type="number"
                 placeholder="Return Journey"
                 value={zeroTwo}
+                required
                 onChange={(e) => setZeroTwo(e.target.value)}
               />
             </div>
 
             <div className="AddTollForm__vehicleRow">
-              <select onChange={(e) => setOneZero(e.target.value)}>
-                <option>Select Vehicle Type</option>
-
-                <option>Car/Jeep/Van</option>
-                <option>LCV</option>
-                <option>Truck/Bus</option>
-                <option>Heavy vehicle</option>
+              <select required onChange={(e) => setOneZero(e.target.value)}>
+                <option value="">Select Vehicle Type</option>
+                <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                <option value="LCV">LCV</option>
+                <option value="Truck/Bus">Truck/Bus</option>
+                <option value="Heavy vehicle">Heavy vehicle</option>
               </select>
               <input
                 type="number"
                 placeholder="Single Journey"
                 value={oneOne}
+                required
                 onChange={(e) => setOneOne(e.target.value)}
               />
               <input
                 type="number"
                 placeholder="Return Journey"
                 value={oneTwo}
+                required
                 onChange={(e) => setOneTwo(e.target.value)}
               />
             </div>
 
             <div className="AddTollForm__vehicleRow">
-              <select onChange={(e) => setTwoZero(e.target.value)}>
-                <option>Select Vehicle Type</option>
-
-                <option>Car/Jeep/Van</option>
-                <option>LCV</option>
-                <option>Truck/Bus</option>
-                <option>Heavy vehicle</option>
+              <select required onChange={(e) => setTwoZero(e.target.value)}>
+                <option value="">Select Vehicle Type</option>
+                <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                <option value="LCV">LCV</option>
+                <option value="Truck/Bus">Truck/Bus</option>
+                <option value="Heavy vehicle">Heavy vehicle</option>
               </select>
               <input
                 type="number"
                 placeholder="Single Journey"
                 value={twoOne}
+                required
                 onChange={(e) => setTwoOne(e.target.value)}
               />
               <input
                 type="number"
                 placeholder="Return Journey"
                 value={twoTwo}
+                required
                 onChange={(e) => setTwoTwo(e.target.value)}
               />
             </div>
 
             <div className="AddTollForm__vehicleRow">
-              <select onChange={(e) => setThreeZero(e.target.value)}>
-                <option>Select Vehicle Type</option>
-
-                <option>Car/Jeep/Van</option>
-                <option>LCV</option>
-                <option>Truck/Bus</option>
-                <option>Heavy vehicle</option>
+              <select required onChange={(e) => setThreeZero(e.target.value)}>
+                <option value="">Select Vehicle Type</option>
+                <option value="Car/Jeep/Van">Car/Jeep/Van</option>
+                <option value="LCV">LCV</option>
+                <option value="Truck/Bus">Truck/Bus</option>
+                <option value="Heavy vehicle">Heavy vehicle</option>
               </select>
               <input
                 type="number"
                 placeholder="Single Journey"
                 value={threeOne}
+                required
                 onChange={(e) => setThreeOne(e.target.value)}
               />
               <input
                 type="number"
                 placeholder="Return Journey"
                 value={threeTwo}
+                required
                 onChange={(e) => setThreeTwo(e.target.value)}
               />
             </div>
           </div>
 
           <div className="AddTollForm__footer">
-            <button onClick={handleSubmit} className="AddTollForm__submitBtn">
+            <button type="submit" className="AddTollForm__submitBtn">
               Add Details
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
