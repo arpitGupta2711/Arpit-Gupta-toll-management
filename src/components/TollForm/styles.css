@@ -1,0 +1,97 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 2;
+   
+  }
+
+  .AddTollForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 520px;
+    /* width:50%; */
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+  }
+  
+  .AddTollForm__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .AddTollForm__header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .AddTollForm__header button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .AddTollForm__section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .AddTollForm__section label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .AddTollForm__section input,
+  .AddTollForm__section select {
+    border:  2px solid #ccc;
+    /* border-bottom: 2px solid #ccc; */
+    margin:4px;
+    padding: 5px;
+  }
+  
+  /* .AddTollForm__section select {
+    width: 100%;
+  } */
+  
+  .AddTollForm__vehicleRow{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 8px 10px;
+  }
+  .AddTollForm__footer {
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .AddTollForm__footer button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  

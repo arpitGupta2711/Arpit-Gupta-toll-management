@@ -3,16 +3,12 @@ import "./styles.css";
 import VerticalDivider from "../VerticalDivider/VerticalDivider.jsx";
 import { Link, useLocation } from "react-router-dom";
 import filterSolid from "../../images/filter-solid.svg";
-import { ReactComponent as SearchIcon } from "../../images/search-solid.svg";
 
-const Navbar = ({ title, filter }) => {
+
+const Navbar = ({ title, filter,searchPlaceholder,setTollFlag ,setLogsFlag }) => {
+    
   const location = useLocation();
-  const placeholderText = (
-    <span>
-      <SearchIcon />
-      Search
-    </span>
-  );
+
   console.log(location);
   return (
     <nav className="navbar">
@@ -27,17 +23,18 @@ const Navbar = ({ title, filter }) => {
           </div>
         )}
         <div className="navbar-search">
-          <input className="search" type="text"  placeholder="Search Vehicle"/> 
+          <input className="search" type="text"  placeholder={searchPlaceholder}/> 
         </div>
       </div>
 
       <div className="navbar-buttons">
-        <button>Add vehicle entry </button>
-        <button>Add new toll</button>
+        <button onClick={()=>setLogsFlag(true)}>Add vehicle entry </button>
+        <button onClick={()=>setTollFlag(true)}>Add new toll</button>
         <Link to={filter ? "/tollList" : "/"}>
           <button>{filter ? "View all tolls" : "Back to vehicle logs"}</button>
         </Link>
       </div>
+
     </nav>
   );
 };
