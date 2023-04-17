@@ -1,6 +1,7 @@
 .toll-table {
     width: 95%;
     border-collapse: collapse;
+    border:none;
     margin:auto;
     margin-top: 20px;
     
@@ -14,12 +15,11 @@
   .header-cell {
     font-size: 16px;
     text-align: left;
- color:rgb(109, 109, 109);
+   color:rgb(109, 109, 109);
     padding: 10px;
   }
   
   .table-body td {
     font-size: 16px;
     padding: 10px;
-    border: 1px solid rgb(109, 109, 109);
   }

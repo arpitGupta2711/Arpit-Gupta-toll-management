@@ -42,6 +42,12 @@ const TollForm = ({ setTollFlag, setTollList }) => {
         returnFare: threeTwo,
       },
     };
+    
+    var set= new Set([zeroZero,oneZero,twoZero,threeZero])
+    if(set.size!==4){
+        alert('Please select different values in vehicle types!!!')
+       return;
+    }
 
     setTollList((prev) => {
         prev.push(newToll);
