@@ -1,7 +1,7 @@
 import "./App.css";
 import Divider from "./components/HorizontalDivider/HorizontalDivider";
 import Header from "./components/Header/Header";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import TollEntries from "./components/TollEntries/TollEntries.jsx";
 import TollList from "./components/TollLists/TollList.jsx";
 import { useEffect, useState } from "react";
@@ -19,7 +19,7 @@ function App() {
   // const [newToll, setNewToll] = useState({});
   console.log("tolls are ", tollList);
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: (
