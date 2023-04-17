@@ -19,7 +19,7 @@ const TollList = ({
   });
 
   const handleDelete = (e) => {
-    // console.log('herer dfs is ',df);
+  
     console.log(e.currentTarget.getAttribute("data-value"));
     const toDeleteToll = e.currentTarget.getAttribute("data-value");
     const newEntries = tollList.filter((item) => {
