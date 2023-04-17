@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Arpit-Gupta-toll-management/static/css/main.33fe9323.css",
+    "main.js": "/Arpit-Gupta-toll-management/static/js/main.261baf06.js",
+    "index.html": "/Arpit-Gupta-toll-management/index.html",
+    "static/media/filter-solid.svg": "/Arpit-Gupta-toll-management/static/media/filter-solid.28cbbe1332e7459bba485026febbc758.svg",
+    "main.33fe9323.css.map": "/Arpit-Gupta-toll-management/static/css/main.33fe9323.css.map",
+    "main.261baf06.js.map": "/Arpit-Gupta-toll-management/static/js/main.261baf06.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.33fe9323.css",
+    "static/js/main.261baf06.js"
+  ]
+}
