@@ -14,6 +14,8 @@ function App() {
   const [tollList, setTollList] = useState([]);
   const [entries, setEntries] = useState([]);
   const [tollFilter, setTollFilter] = useState("All");
+  const [tollSearch, setTollSearch] = useState("");
+  const [entrySearch, setEntrySearch] = useState("");
   // const [newToll, setNewToll] = useState({});
   console.log("tolls are ", tollList);
 
@@ -28,6 +30,8 @@ function App() {
           entries={entries}
           setTollFlag={setTollFlag}
           setLogsFlag={setLogsFlag}
+          entrySearch={entrySearch}
+          setEntrySearch={setEntrySearch}
         />
       ),
     },
@@ -38,8 +42,11 @@ function App() {
           tollFilter={tollFilter}
           setTollFilter={setTollFilter}
           tollList={tollList}
+          setTollList={setTollList}
           setTollFlag={setTollFlag}
           setLogsFlag={setLogsFlag}
+          tollSearch={tollSearch}
+          setTollSearch={setTollSearch}
         />
       ),
     },
@@ -49,13 +56,12 @@ function App() {
 
   useEffect(() => {
     const tollsFromLocalStorage = JSON.parse(localStorage.getItem("tolls"));
-    const entriesFromLocalStorage= JSON.parse(localStorage.getItem("entries"))
-    if(tollsFromLocalStorage)
-    setTollList(tollsFromLocalStorage)
+    const entriesFromLocalStorage = JSON.parse(localStorage.getItem("entries"));
+    setTollFilter("");
+    setTollSearch("");
+    if (tollsFromLocalStorage) setTollList(tollsFromLocalStorage);
 
-    if(entriesFromLocalStorage)
-    setEntries(entriesFromLocalStorage)
-  
+    if (entriesFromLocalStorage) setEntries(entriesFromLocalStorage);
   }, []);
   return (
     <div className="App">

@@ -12,10 +12,13 @@ const Navbar = ({
   setLogsFlag,
   tollList,
   setTollFilter,
-  tollFilter
+  tollFilter,
+  tollSearch,
+  setTollSearch,
+  entrySearch,
+  setEntrySearch,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-
 
   const handleFilterClick = () => {
     // console.log("clicked");
@@ -23,7 +26,7 @@ const Navbar = ({
     setShowDropdown(!showDropdown);
   };
 
-
+  console.log("tollfilter here is ", tollFilter);
   return (
     <nav className="navbar">
       <div className="left">
@@ -33,12 +36,16 @@ const Navbar = ({
           <div className="navbar-filter">
             <img src={filterSolid} alt="filter" onClick={handleFilterClick} />
             {showDropdown && (
-              <select name="filter" value={tollFilter} onChange={(e)=>{
-                console.log("here i come");
-                setTollFilter(e.target.value)
-              }}>
+              <select
+                name="filter"
+                value={tollFilter}
+                onChange={(e) => {
+                  console.log("here i come");
+                  setTollFilter(e.target.value);
+                }}
+              >
                 <option value="">All</option>
-                {tollList.map((item,index) => (
+                {tollList.map((item, index) => (
                   <option key={index} value={item.tollName}>
                     {item.tollName}
                   </option>
@@ -49,6 +56,14 @@ const Navbar = ({
         )}
         <div className="navbar-search">
           <input
+            value={tollSearch}
+            onChange={(e) => {
+              if (filter) {
+                setEntrySearch(e.target.value);
+              } else {
+                setTollSearch(e.target.value);
+              }
+            }}
             className="search"
             type="text"
             placeholder={searchPlaceholder}

@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar.jsx";
 
-
 const TollEntries = ({
   setTollFlag,
   setLogsFlag,
@@ -9,20 +8,30 @@ const TollEntries = ({
   tollList,
   setTollFilter,
   tollFilter,
+  entrySearch,
+  setEntrySearch,
 }) => {
-//   const [newEntries,setNewEntries] = useState([]);
-//   if (tollFilter !== "All") {
-//     console.log('tollfilter is ',tollFilter);
-//    const newEnt = entries.filter((item) => {
-//       return item.tollName === tollFilter;
-//     });
-//     setNewEntries(newEnt)
-//   }
+  console.log("toll filter is ", tollFilter);
+  var newEntries;
+  if (entrySearch === "") {
+    newEntries = entries.filter((item) => {
+      return item.tollName === tollFilter;
+    });
+  } else {
+    if (tollFilter === "") {
+      newEntries = entries.filter((item) => {
+        return item.vehicleNumber === entrySearch;
+      });
+    } else {
+      newEntries = entries.filter((item) => {
+        return item.tollName === tollFilter;
+      });
+      newEntries = newEntries.filter((item) => {
+        return item.vehicleNumber === entrySearch;
+      });
+    }
+  }
 
-console.log('toll filter is ',tollFilter);
-const newEntries =  entries.filter((item) => {
-          return item.tollName === tollFilter;
-        });
   return (
     <>
       <Navbar
@@ -34,6 +43,8 @@ const newEntries =  entries.filter((item) => {
         setTollFilter={setTollFilter}
         filter
         tollFilter={tollFilter}
+        entrySearch={entrySearch}
+        setEntrySearch={setEntrySearch}
       />
 
       <table className="toll-table">
@@ -47,7 +58,7 @@ const newEntries =  entries.filter((item) => {
           </tr>
         </thead>
         <tbody className="table-body">
-          {tollFilter === ""
+          {tollFilter === "" && entrySearch === ""
             ? entries.map((item) => {
                 return (
                   <tr>
@@ -61,7 +72,7 @@ const newEntries =  entries.filter((item) => {
                   </tr>
                 );
               })
-            :  newEntries.map((item) => {
+            : newEntries.map((item) => {
                 return (
                   <tr>
                     <td className="body-cell">{item.vehicleType}</td>
