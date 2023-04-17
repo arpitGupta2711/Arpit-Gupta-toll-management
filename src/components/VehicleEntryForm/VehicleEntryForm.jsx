@@ -19,7 +19,9 @@ const VehicleEntryForm = ({ setLogsFlag, tollList, entries, setEntries }) => {
     };
     event.preventDefault();
     setEntries((prev) => {
-      prev.push(newEntry);
+        
+        prev.push(newEntry);
+        localStorage.setItem('entries',JSON.stringify(prev))
       return prev;
     });
 
@@ -42,7 +44,7 @@ const VehicleEntryForm = ({ setLogsFlag, tollList, entries, setEntries }) => {
       tariff !== toll[`${vehicleType}`].returnFare
     ) {
         console.log('herehere')
-        
+        console.log('entries are ',entries);
         const entry = entries.find(ent=>{
             return ent.vehicleNumber===vehicleNumber
         })

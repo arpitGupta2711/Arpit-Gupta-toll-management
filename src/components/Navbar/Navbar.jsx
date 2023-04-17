@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import VerticalDivider from "../VerticalDivider/VerticalDivider.jsx";
 import { Link } from "react-router-dom";
@@ -10,11 +10,20 @@ const Navbar = ({
   searchPlaceholder,
   setTollFlag,
   setLogsFlag,
-
+  tollList,
+  setTollFilter,
+  tollFilter
 }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
 
 
-    
+  const handleFilterClick = () => {
+    // console.log("clicked");
+    setTollFilter("");
+    setShowDropdown(!showDropdown);
+  };
+
+
   return (
     <nav className="navbar">
       <div className="left">
@@ -22,7 +31,20 @@ const Navbar = ({
         <VerticalDivider />
         {filter && (
           <div className="navbar-filter">
-            <img src={filterSolid} alt="filter" />
+            <img src={filterSolid} alt="filter" onClick={handleFilterClick} />
+            {showDropdown && (
+              <select name="filter" value={tollFilter} onChange={(e)=>{
+                console.log("here i come");
+                setTollFilter(e.target.value)
+              }}>
+                <option value="">All</option>
+                {tollList.map((item,index) => (
+                  <option key={index} value={item.tollName}>
+                    {item.tollName}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
         )}
         <div className="navbar-search">
@@ -35,7 +57,7 @@ const Navbar = ({
       </div>
 
       <div className="navbar-buttons">
-        <button onClick={() => setLogsFlag(true)}>Add vehicle entry </button>
+        <button onClick={() => setLogsFlag(true)}>Add vehicle entry</button>
         <button onClick={() => setTollFlag(true)}>Add new toll</button>
         <Link to={filter ? "/tollList" : "/"}>
           <button>{filter ? "View all tolls" : "Back to vehicle logs"}</button>

@@ -44,9 +44,11 @@ const TollForm = ({ setTollFlag, setTollList }) => {
     };
 
     setTollList((prev) => {
-      prev.push(newToll);
+        prev.push(newToll);
+        localStorage.setItem('tolls',JSON.stringify(prev));
       return prev;
     });
+  
 
     setTollName("");
     setZeroZero("");

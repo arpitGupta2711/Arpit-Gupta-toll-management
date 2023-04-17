@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./styles.css";
 
-const TollList = ({ setTollFlag, setLogsFlag, tollList }) => {
+const TollList = ({
+  setTollFlag,
+  setLogsFlag,
+  tollList,
+  setTollFilter,
+  tollFilter,
+}) => {
   console.log("i am rendered");
+
   return (
     <>
       <Navbar
@@ -12,6 +19,8 @@ const TollList = ({ setTollFlag, setLogsFlag, tollList }) => {
         setTollFlag={setTollFlag}
         setLogsFlag={setLogsFlag}
         tollList={tollList}
+        setTollFilter={setTollFilter}
+        tollFilter={tollFilter}
       />
 
       <table className="toll-table">

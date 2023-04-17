@@ -12,20 +12,31 @@ function App() {
   const [tollFlag, setTollFlag] = useState(false);
   const [logsFlag, setLogsFlag] = useState(false);
   const [tollList, setTollList] = useState([]);
-  const [entries,setEntries]=useState([]);
+  const [entries, setEntries] = useState([]);
+  const [tollFilter, setTollFilter] = useState("All");
   // const [newToll, setNewToll] = useState({});
   console.log("tolls are ", tollList);
+
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        <TollEntries tollList={tollList} entries={entries} setTollFlag={setTollFlag} setLogsFlag={setLogsFlag} />
+        <TollEntries
+          tollFilter={tollFilter}
+          setTollFilter={setTollFilter}
+          tollList={tollList}
+          entries={entries}
+          setTollFlag={setTollFlag}
+          setLogsFlag={setLogsFlag}
+        />
       ),
     },
     {
       path: "/tollList",
       element: (
         <TollList
+          tollFilter={tollFilter}
+          setTollFilter={setTollFilter}
           tollList={tollList}
           setTollFlag={setTollFlag}
           setLogsFlag={setLogsFlag}
@@ -34,8 +45,18 @@ function App() {
     },
   ]);
 
-  console.log('entries are ',entries)
+  console.log("entries are ", entries);
 
+  useEffect(() => {
+    const tollsFromLocalStorage = JSON.parse(localStorage.getItem("tolls"));
+    const entriesFromLocalStorage= JSON.parse(localStorage.getItem("entries"))
+    if(tollsFromLocalStorage)
+    setTollList(tollsFromLocalStorage)
+
+    if(entriesFromLocalStorage)
+    setEntries(entriesFromLocalStorage)
+  
+  }, []);
   return (
     <div className="App">
       <Header />
@@ -43,8 +64,13 @@ function App() {
       {tollFlag && (
         <TollForm setTollFlag={setTollFlag} setTollList={setTollList} />
       )}
-      {logsFlag&&(
-        <VehicleEntryForm entries={entries} setEntries={setEntries} tollList={tollList} setLogsFlag={setLogsFlag}/>
+      {logsFlag && (
+        <VehicleEntryForm
+          entries={entries}
+          setEntries={setEntries}
+          tollList={tollList}
+          setLogsFlag={setLogsFlag}
+        />
       )}
       <RouterProvider router={router} />
     </div>
